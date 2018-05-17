@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Site</title>
+	</head>
+
+	<body>
+		<nav>
+			<% if logged_in? %>
+				<h2>
+					<a href="/characters/index">Your Characters</a>
+				</h2>
+				<br>
+				<h2>
+					<a href="/characters/new">New Character</a>
+				</h2>
+			<% else %>
+				<a href="/signup">Sign Up</a>
+				<a href="/login">Log In</a>
+			<% end %>
+		</nav>
+		<div class="container">
+			<%= yield %>
+		</div>
+	</body>
+</html>
