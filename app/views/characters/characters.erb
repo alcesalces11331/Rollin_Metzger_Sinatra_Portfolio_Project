@@ -1,0 +1,13 @@
+<h1>Hello, <%= @user.username %></h1>
+
+<h3>Your Characters:</h3>
+
+<% @characters.each do |character| %>
+	<%= character.name %><br>
+	<%= character.race %><br>
+	<%= character.klass %><br>
+<% end %>
+
+<form action="/logout">
+	<input type="submit" value="Log Out">
+</form>
