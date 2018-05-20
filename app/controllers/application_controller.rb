@@ -1,4 +1,6 @@
+require_relative '../models/concerns/slugifiable.rb'
 require './config/environment'
+require 'sinatra/base'
 
 class ApplicationController < Sinatra::Base
 
