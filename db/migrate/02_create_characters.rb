@@ -4,6 +4,12 @@ class CreateCharacters < ActiveRecord::Migration
 			t.string :name
 			t.string :race
 			t.string :klass
+			t.integer :str
+			t.integer :con
+			t.integer :dex
+			t.integer :wis
+			t.integer :int
+			t.integer :cha
 			t.integer :user_id
 		end
 	end
