@@ -1,0 +1,23 @@
+<% if logged_in? %>
+	<%= @character.name %>
+	<br>
+	<%= @character.race %>
+	<br>
+	<%= @character.klass %>
+	<br>
+	Ability Scores:
+	<br>
+	<%= @character.str %>
+	<br>
+	<%= @character.con %>
+	<br>
+	<%= @character.dex %>
+	<br>
+	<%= @character.wis %>
+	<br>
+	<%= @character.int %>
+	<br>
+	<%= @character.cha %>
+<% else %>
+	<a href="/login">Log In to See Your Character</a>
+<% end %>
