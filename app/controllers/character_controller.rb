@@ -9,4 +9,26 @@ class CharacterController < ApplicationController
 			redirect '/login'
 		end
 	end
+
+	get '/characters/new' do
+		if logged_in?
+			erb :'/characters/new'
+		else
+			redirect '/login'
+		end
+	end
+
+	post '/characters' do
+		if logged_in?
+			if params[:character] == ""
+				redirect "/characters/new"
+			else
+				@character = current_user.characters.create(params[:character])
+				@character.save
+				redirect "/characters/#{@character.id}"
+			end
+		else
+			redirect '/login'
+		end
+	end
 end

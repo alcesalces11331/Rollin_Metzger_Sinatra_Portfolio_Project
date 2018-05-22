@@ -1,5 +1,5 @@
 <h1>Create your own Personalized Dungeons and Dragons Character!</h1>
-<form action="/characters/new" method='POST'>
+<form action="/characters" method='POST'>
 	<label for="name">
 		Name: <input type="text" name='character[name]'>
 	</label>
@@ -9,10 +9,11 @@
 	</label>
 	<br>
 	<label for="class">
-		Class: <input type="text" name="character[class]">
+		Class: <input type="text" name="character[klass]">
 	</label>
 	<br>
 	Ability Scores:
+	<br>
 	<label for="str">
 		Strength: <input type="integer" name='character[str]'>
 	</label>
