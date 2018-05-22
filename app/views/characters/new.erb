@@ -1,0 +1,41 @@
+<h1>Create your own Personalized Dungeons and Dragons Character!</h1>
+<form action="/characters/new" method='POST'>
+	<label for="name">
+		Name: <input type="text" name='character[name]'>
+	</label>
+	<br>
+	<label for="race">
+		Race: <input type="text" name='charcter[race]'>
+	</label>
+	<br>
+	<label for="class">
+		Class: <input type="text" name="character[class]">
+	</label>
+	<br>
+	Ability Scores:
+	<label for="str">
+		Strength: <input type="integer" name='character[str]'>
+	</label>
+	<br>
+	<label for="con">
+		Constitution: <input type="integer" name='character[con]'>
+	</label>
+	<br>
+	<label for="dex">
+		Dexterity: <input type="integer" name='character[dex]'>
+	</label>
+	<br>
+	<label for="wis">
+		Wisdom: <input type="integer" name='character[wis]'>
+	</label>
+	<br>
+	<label for="int">
+		Intelligence: <input type="integer" name='character[int]'>
+	</label>
+	<br>
+	<label for="cha">
+		Charisma: <input type="integer" name='character[cha]'>
+	</label>
+	<br>
+	<input type="submit" value='Create'>
+</form>
