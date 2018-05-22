@@ -61,4 +61,16 @@ class CharacterController < ApplicationController
 			redirect '/login'
 		end
 	end
+
+	delete '/characters/:slug/delete' do
+		@character = Character.find_by_slug(params[:slug])
+		if logged_in? && @character.user_id == session[:user_id]
+			@character.delete
+			flash[:message] = "Character Deleted"
+			redirect '/'
+		else
+			redirect '/login'
+		end
+	end
+			
 end
