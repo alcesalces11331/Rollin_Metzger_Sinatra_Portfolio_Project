@@ -50,4 +50,15 @@ class CharacterController < ApplicationController
 		end
 	end
 
+	patch '/characters/:slug' do
+		if logged_in?
+			@character = Character.find_by_slug(params[:slug])
+			@character.update(params[:character])
+			@character.save
+			flash[:message] = "Character Updated"
+			redirect "/characters/#{@character.slug}"
+		else
+			redirect '/login'
+		end
+	end
 end
