@@ -31,4 +31,13 @@ class CharacterController < ApplicationController
 			redirect '/login'
 		end
 	end
+
+	get '/characters/:id' do
+		if logged_in?
+			@character = Character.find_by_id(params[:id])
+			erb :'/characters/show'
+		else
+			redirect '/login'
+		end
+	end
 end
