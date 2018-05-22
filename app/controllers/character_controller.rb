@@ -25,16 +25,16 @@ class CharacterController < ApplicationController
 			else
 				@character = current_user.characters.create(params[:character])
 				@character.save
-				redirect "/characters/#{@character.id}"
+				redirect "/characters/#{@character.slug}"
 			end
 		else
 			redirect '/login'
 		end
 	end
 
-	get '/characters/:id' do
+	get '/characters/:slug' do
 		if logged_in?
-			@character = Character.find_by_id(params[:id])
+			@character = Character.find_by_slug(params[:slug])
 			erb :'/characters/show'
 		else
 			redirect '/login'
