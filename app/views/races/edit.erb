@@ -1,3 +1,34 @@
 <% if flash.has?(:message) %>
 	<%= flash[:message] %>
 <% end %>
+
+Edit Race <br>
+<%= @race.name %>: <br>
+<form action="/races/<%= @race.slug %>" method='POST'>
+	<input type="hidden" name='_method' value='PATCH'>
+
+	<label for="new_race_name">
+		Name: <input type="text" name='race[name]'>
+	</label>
+	<br>
+	<label for="new_race_language">
+		Language: <input type="text" name='race[language]'>
+	</label>
+	<br>
+	<label for="new_race_bonus_1">
+		Bonus 1: <input type="text" name='race[bonus_1]'>
+	</label>
+	<br>
+	<label for="new_race_bonus_2">
+		Bonus 2: <input type="text" name='race[bonus_2]'>
+	</label>
+	<br>
+	<label for="new_race_abs_1">
+		Ability Score Modifier 1: <input type="text" name='race[abs_1]'>
+	</label>
+	<br>
+	<label for="new_race_abs_2">
+		Ability Score Modifier 2: <input type="text" name='race[abs_2]'>
+	</label>
+	<input type="submit" value='Update'>
+</form>
