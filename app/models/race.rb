@@ -3,4 +3,5 @@ class Race < ActiveRecord::Base
 	extend Slugifiable::ClassMethods
 	
 	belongs_to :character
+	belongs_to :user
 end

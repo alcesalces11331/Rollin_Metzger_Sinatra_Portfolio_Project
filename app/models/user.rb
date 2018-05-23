@@ -5,5 +5,5 @@ class User < ActiveRecord::Base
 	has_secure_password
 	has_many :characters
 	has_many :klasses, through: :characters
-	has_many :races, through: :characters
+	has_many :races
 end
