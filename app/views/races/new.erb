@@ -1,3 +1,7 @@
+<% if flash.has?(:message) %>
+	<%= flash[:message] %>
+<% end %>
+
 <h1>Create Your Own Race</h1>
 <form action="/races" method='POST'>
 	<label for="new_race_name">

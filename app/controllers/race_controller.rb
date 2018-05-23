@@ -25,6 +25,7 @@ class RaceController < ApplicationController
 			else
 				@race = current_user.races.create(params[:race])
 				@race.save
+				flash[:message] = "Race Created"
 				redirect "/characters/#{@race.slug}"
 			end
 		else

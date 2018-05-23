@@ -1,3 +1,7 @@
+<% if flash.has?(:message) %>
+	<%= flash[:message] %>
+<% end %>
+
 <h1>Create your own Personalized Dungeons and Dragons Character!</h1>
 <form action="/characters" method='POST'>
 	<label for="name">
