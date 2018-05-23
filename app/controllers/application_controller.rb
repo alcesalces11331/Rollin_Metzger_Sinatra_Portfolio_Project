@@ -5,6 +5,7 @@ require 'rack-flash'
 
 class ApplicationController < Sinatra::Base
 	include Slugifiable::InstanceMethods
+	extend Slugifiable::ClassMethods
 
 	configure do
 		set :public_folder, 'public'
@@ -21,11 +22,11 @@ class ApplicationController < Sinatra::Base
 	helpers do
 
 		def logged_in?
-			!!session[:user_id]
+			!!current_user
 		end
 
 		def current_user
-			User.find(session[:user_id])
+			@current_user ||= User.find(session[:id]) if session[:id]
 		end
 	end
 end

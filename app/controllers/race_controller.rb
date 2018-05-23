@@ -9,6 +9,29 @@ class RaceController < ApplicationController
 		end
 	end
 
+	get '/races/new' do
+		if logged_in?
+			@race 
+			erb :'/races/new'
+		else
+			redirect '/login'
+		end
+	end
+
+	post '/races' do
+		if logged_in?
+			if params[:race] == ""
+				redirect '/races/new'
+			else
+				@race = current_user.races.create(params[:race])
+				flash[:message] = "Race Created"
+				redirect "/races/#{@race.slug}"
+			end
+		else
+			redirect '/login'
+		end
+	end
+
 	get '/races/:slug' do
 		if logged_in?
 			@race = Race.find_by_slug(params[:slug])
@@ -18,24 +41,10 @@ class RaceController < ApplicationController
 		end
 	end
 
-	get '/races/new' do
+	get '/races/:slug/edit' do 
 		if logged_in?
-			erb :'/races/new'
-		else
-			redirect '/login'
-		end
-	end
-
-	post '/races' do
-		if logged_in?
-			if params[:races] = ""
-				redirect '/races/new'
-			else
-				@race = current_user.races.create(params[:race])
-				@race.save
-				flash[:message] = "Race Created"
-				redirect "/characters/#{@race.slug}"
-			end
+			@race = Race.find_by_slug(params[:slug])
+			erb :'/races/edit'
 		else
 			redirect '/login'
 		end

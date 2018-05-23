@@ -24,7 +24,6 @@ class CharacterController < ApplicationController
 				redirect "/characters/new"
 			else
 				@character = current_user.characters.create(params[:character])
-				@character.save
 				flash[:message] = "Character Created"
 				redirect "/characters/#{@character.slug}"
 			end
