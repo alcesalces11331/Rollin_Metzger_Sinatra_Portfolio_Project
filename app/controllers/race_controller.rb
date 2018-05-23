@@ -1,13 +1,21 @@
 class RaceController < ApplicationController
 
 	get '/races' do
-		@races = Race.all
-		erb :'/races/index'
+		if logged_in?
+			@races = Race.all
+			erb :'/races/index'
+		else
+			redirect '/login'
+		end
 	end
 
 	get '/races/:slug' do
-		@race = Race.find_by_slug(params[:slug])
-		erb :'/races/show'
+		if logged_in?
+			@race = Race.find_by_slug(params[:slug])
+			erb :'/races/show'
+		else
+			redirect '/login'
+		end
 	end
 
 	get '/races/new' do
@@ -28,6 +36,18 @@ class RaceController < ApplicationController
 				flash[:message] = "Race Created"
 				redirect "/characters/#{@race.slug}"
 			end
+		else
+			redirect '/login'
+		end
+	end
+
+	patch '/races/:slug' do
+		if logged_in?
+			@race = Character.find_by_slug(params[:slug])
+			@race.update(params[:race])
+			@race.save
+			flash[:message] = "Race Updated"
+			redirect "/races/#{@race.slug}"
 		else
 			redirect '/login'
 		end

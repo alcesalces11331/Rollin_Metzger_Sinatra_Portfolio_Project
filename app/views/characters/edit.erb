@@ -3,7 +3,7 @@
 <% end %>
 
 Edit/Update Character: <br>
-<% @character.name %> <br>
+<% @character.name %> <br> 
 <form action="/characters/<%= @character.slug %>" method='POST'>
 	<input type="hidden" name='_method' value='PATCH'>
 
