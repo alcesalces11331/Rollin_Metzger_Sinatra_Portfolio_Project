@@ -7,6 +7,7 @@ class CreateRaces < ActiveRecord::Migration[4.2]
 			t.string :bonus_2
 			t.integer :abs_1
 			t.integer :abs_2
+			t.integer :user_id
 		end
 	end
 end

@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 4) do
     t.string "bonus_2"
     t.integer "abs_1"
     t.integer "abs_2"
+    t.integer "user_id"
   end
 
   create_table "users", force: :cascade do |t|
