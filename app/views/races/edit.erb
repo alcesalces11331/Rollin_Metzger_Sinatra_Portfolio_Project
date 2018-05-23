@@ -32,3 +32,8 @@ Edit Race <br>
 	</label>
 	<input type="submit" value='Update'>
 </form>
+
+<form action="/races/<%= @race.slug %>/delete" method='POST'>
+	<input type="hidden" name='_method' value='delete'>
+	<input type="submit" value="Delete Race?">
+</form>

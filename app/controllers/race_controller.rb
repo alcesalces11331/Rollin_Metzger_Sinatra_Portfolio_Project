@@ -43,11 +43,22 @@ class RaceController < ApplicationController
 
 	patch '/races/:slug' do
 		if logged_in?
-			@race = Character.find_by_slug(params[:slug])
+			@race = Races.find_by_slug(params[:slug])
 			@race.update(params[:race])
 			@race.save
 			flash[:message] = "Race Updated"
 			redirect "/races/#{@race.slug}"
+		else
+			redirect '/login'
+		end
+	end
+
+	delete '/races/:slug/delete' do
+		@race = Race.find_by_slug(params[:slug])
+		if logged_in? && @race.user_id == session[:user_id]
+			@race.delete
+			flash[:message] = "Race Deleted"
+			redirect '/'
 		else
 			redirect '/login'
 		end
