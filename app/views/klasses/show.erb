@@ -1,0 +1,8 @@
+<% if logged_in? %>
+	<h1><%= @klass.name %></h1>
+	<h2><%= @klass.hitdie %></h2>
+	<h2><%= @klass.proficencies %></h2>
+	<h2><%= @klass.ability %></h2>
+<% else %>
+	<a href="/login">Log In</a>
+<% end %>
