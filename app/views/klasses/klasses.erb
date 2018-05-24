@@ -1,9 +1,10 @@
 <h3>Your Classes:</h3>
 
 <% @klasses.each do |klasse| %>
-	<%=klasse.name %><br>
-	<%= klasse.race %><br>
-	<%= klasse.klass %><br>
+	<%= klasse.name %><br>
+	<%= klasse.hitdie %><br>
+	<%= klasse.proficencies %><br>
+	<%= klasse.ability %><br>
 <% end %>
 
 <form action="/logout">
