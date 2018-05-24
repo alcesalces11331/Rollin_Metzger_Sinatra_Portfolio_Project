@@ -1,0 +1,11 @@
+<h3>Your Classes:</h3>
+
+<% @klasses.each do |klasse| %>
+	<%=klasse.name %><br>
+	<%= klasse.race %><br>
+	<%= klasse.klass %><br>
+<% end %>
+
+<form action="/logout">
+	<input type="submit" value="Log Out">
+</form>
