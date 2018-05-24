@@ -5,20 +5,26 @@
 	</head>
 
 	<body>
-		<nav>
+		<nav class="nav_bar">
 			<% if logged_in? %>
-				<h4>
+				<h6>
 					<a href="/characters">Your Characters</a>
-				</h4>
-				<h4>
+				</h6>
+				<h6>
 					<a href="/characters/new">Create a Character</a>
-				</h4>
-				<h4>
+				</h6>
+				<h6>
 					<a href="/races">Your Races</a>
-				</h4>
-				<h4>
+				</h6>
+				<h6>
 					<a href="/races/new">Create a Race</a>
-				</h4>
+				</h6>
+				<h6>
+					<a href='/klasses'>Your Classes</a>
+				</h6>
+				<h6>
+					<a href="/klasses/new">Create a Class</a>
+				</h6>
 			<% else %>
 				<a href="/signup">Sign Up</a>
 				<a href="/login">Log In</a>

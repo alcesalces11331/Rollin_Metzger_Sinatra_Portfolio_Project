@@ -8,6 +8,6 @@ require './config/environment'
 use UserController
 use RaceController
 use CharacterController
-#use KlassController
+use KlassController
 use Rack::MethodOverride
 run ApplicationController
