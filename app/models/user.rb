@@ -6,6 +6,6 @@ class User < ActiveRecord::Base
 	validates :username, :email, :password, presence: true
 	
 	has_many :characters
-	has_many :klasses, through: :characters
+	has_many :klasses
 	has_many :races
 end
