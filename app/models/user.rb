@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
 	extend Slugifiable::ClassMethods
 	
 	has_secure_password
+	validates :username, :email, :password, presence: true
+	
 	has_many :characters
 	has_many :klasses, through: :characters
 	has_many :races

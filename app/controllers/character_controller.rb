@@ -1,6 +1,7 @@
 class CharacterController < ApplicationController
 
 	get '/characters' do
+		binding.pry
 		if logged_in?
 			@user = current_user
 			@characters = Character.all
