@@ -34,7 +34,6 @@ class CharacterController < ApplicationController
 
 	get '/characters/:slug' do
 		if logged_in?
-			binding.pry
 			@character = Character.find_by_slug(params[:slug])
 			erb :'/characters/show'
 		else
