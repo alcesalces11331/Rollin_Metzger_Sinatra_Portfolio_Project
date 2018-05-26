@@ -3,7 +3,7 @@
 <h3>Your Characters:</h3>
 
 <% @characters.each do |character| %>
-	<%= character.name %><br>
+	<a href="/characters/<%= character.slug %>"><%= character.name %></a><br>
 	<%= character.race %><br>
 	<%= character.klass %><br>
 <% end %>
