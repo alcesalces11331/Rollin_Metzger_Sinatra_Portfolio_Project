@@ -27,4 +27,10 @@ class KlassController < ApplicationController
 		@klass = Klass.find_by_slug(params[:slug])
 		erb :'/klasses/show'
 	end
+
+	get '/klasses/:slug/edit' do
+		login_validate
+		@klass = Klass.find_by_slug(params[:slug])
+		erb :'/klasses/edit'
+	end
 end

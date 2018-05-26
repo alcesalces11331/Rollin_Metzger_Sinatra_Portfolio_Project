@@ -1,0 +1,24 @@
+<% if flash.has?(:message) %>
+	<%= flash[:message] %>
+<% end %>
+
+<form action="/klasses/<%= @klass.slug %>" method='POST'>
+	<input type="hidden" name='_method' value='PATCH'>
+
+	<label for="name">
+		Name: <input type="text" name='klass[name]'>
+	</label>
+	<br>
+	<label for="hitdie">
+		Hitdie: <input type="text" name='klass[hitdie]'>
+	</label>
+	<br>
+	<label for="proficencies">
+		Proficencies: <input type="text" name='klass[proficencies]'>
+	</label>
+	<br>
+	<label for="ability">
+		Ability: <input type="text" name='klass[ability]'>
+	</label>
+	<input type="submit" value='Create'>
+</form>
