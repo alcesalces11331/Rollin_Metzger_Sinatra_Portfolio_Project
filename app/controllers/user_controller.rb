@@ -6,22 +6,20 @@ class UserController < ApplicationController
 	end
 
 	post '/signup' do
-		if !logged_in?
-			@user = User.create(username: params[:username], password: params[:password], email: params[:email])
-			if !@user.valid?
-				@user.clear
-				redirect '/signup'
-			else
-				session[:user_id] = @user_id
-				redirect '/login'
-			end
-		else
+		login_validate
+		@user = User.create(username: params[:username], password: params[:password], email: params[:email])
+		if !@user.valid?
+			@user.clear
 			redirect '/signup'
+		else
+			session[:user_id] = @user_id
+			redirect '/login'
 		end
 	end
 
 	get '/login' do
-		(!logged_in?) ? (erb :"/users/login") : (redirect "/characters")
+		login_validate
+		redirect "/characters"
 	end
 
 	post '/login' do
@@ -35,11 +33,8 @@ class UserController < ApplicationController
 	end
 
 	get '/logout' do
-		if logged_in?
-			session.clear
-			redirect '/login'
-		else
-			redirect '/'
-		end
+		login_validate
+		session.clear
+		redirect '/login'
 	end
 end
