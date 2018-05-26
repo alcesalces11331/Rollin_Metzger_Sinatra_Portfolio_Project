@@ -33,4 +33,13 @@ class KlassController < ApplicationController
 		@klass = Klass.find_by_slug(params[:slug])
 		erb :'/klasses/edit'
 	end
+
+	patch '/klasses/:slug' do
+		login_validate
+		@klass = Klass.find_by_slug(params[:slug])
+		@klass.update(params[:klass])
+		@klass.save
+		flash[:message] = "Class Updated"
+		redirect "/klasses/#{@klass.slug}"
+	end
 end
