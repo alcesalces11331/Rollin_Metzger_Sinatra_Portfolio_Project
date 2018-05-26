@@ -1,42 +1,30 @@
 class KlassController < ApplicationController
 
 	get '/klasses' do
-		if logged_in?
-			@klasses = Klass.all
-			erb :'/klasses/klasses'
-		else
-			redirect '/login'
-		end
+		login_validate
+		@klasses = Klass.all
+		erb :'/klasses/klasses'
 	end
 
 	get '/klasses/new' do
-		if logged_in?
-			erb :'/klasses/new'
-		else
-			redirect '/login'
-		end
+		login_validate
+		erb :'/klasses/new'
 	end
 
 	post '/klasses' do
-		if logged_in?
-			if params[:klass] == ""
-				redirect '/klasses/new'
-			else
-				@klass = current_user.klasses.create(params[:klass])
-				flash[:message] = "Class Created"
-				redirect "/klasses/#{@klass.slug}"
-			end
+		login_validate
+		if params[:klass] == ""
+			redirect '/klasses/new'
 		else
-			redirect '/login'
+			@klass = current_user.klasses.create(params[:klass])
+			flash[:message] = "Class Created"
+			redirect "/klasses/#{@klass.slug}"
 		end
 	end
 
 	get '/klasses/:slug' do
-		if logged_in?
-			@klass = Klass.find_by_slug(params[:slug])
-			erb :'/klasses/show'
-		else
-			redirect '/login'
-		end
+		login_validate
+		@klass = Klass.find_by_slug(params[:slug])
+		erb :'/klasses/show'
 	end
 end
