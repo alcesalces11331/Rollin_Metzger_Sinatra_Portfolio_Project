@@ -30,7 +30,10 @@ class ApplicationController < Sinatra::Base
 			!!current_user
 		end
 
-		
+
+		def login_validate
+			redirect '/' if !logged_in?
+		end
 		
 	end
 end

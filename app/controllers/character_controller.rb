@@ -1,65 +1,47 @@
 class CharacterController < ApplicationController
 
 	get '/characters' do
-		if logged_in?
-			@user = current_user
-			@characters = Character.all
-			erb :'/characters/characters'
-		else
-			redirect '/login'
-		end
+		login_validate
+		@user = current_user
+		@characters = Character.all
+		erb :'/characters/characters'
 	end
 
 	get '/characters/new' do
-		if logged_in?
-			erb :'/characters/new'
-		else
-			redirect '/login'
-		end
+		login_validate
+		erb :'/characters/new'
 	end
 
 	post '/characters' do
-		if logged_in?
-			if params[:character] == ""
-				redirect "/characters/new"
-			else
-				@character = current_user.characters.create(params[:character])
-				flash[:message] = "Character Created"
-				redirect "/characters/#{@character.slug}"
-			end
+		login_validate
+		if params[:character] == ""
+			redirect "/characters/new"
 		else
-			redirect '/login'
+			@character = current_user.characters.create(params[:character])
+			flash[:message] = "Character Created"
+			redirect "/characters/#{@character.slug}"
 		end
 	end
 
 	get '/characters/:slug' do
-		if logged_in?
-			@character = Character.find_by_slug(params[:slug])
-			erb :'/characters/show'
-		else
-			redirect '/login'
-		end
+		login_validate
+		@character = Character.find_by_slug(params[:slug])
+		erb :'/characters/show'
 	end
 
 	get '/characters/:slug/edit' do
-		if logged_in?
-			@character = Character.find_by_slug(params[:slug])
-			erb :'/characters/edit'
-		else
-			redirect '/login'
-		end
+		login_validate
+		@character = Character.find_by_slug(params[:slug])
+		erb :'/characters/edit'
 	end
 
 	patch '/characters/:slug' do
-		if logged_in?
-			@character = Character.find_by_slug(params[:slug])
-			@character.update(params[:character])
-			@character.save
-			flash[:message] = "Character Updated"
-			redirect "/characters/#{@character.slug}"
-		else
-			redirect '/login'
-		end
+		login_validate
+		@character = Character.find_by_slug(params[:slug])
+		@character.update(params[:character])
+		@character.save
+		flash[:message] = "Character Updated"
+		redirect "/characters/#{@character.slug}"
 	end
 
 	delete '/characters/:slug/delete' do
