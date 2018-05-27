@@ -6,7 +6,6 @@ class UserController < ApplicationController
 	end
 
 	post '/signup' do
-		login_validate
 		@user = User.create(username: params[:username], password: params[:password], email: params[:email])
 		if !@user.valid?
 			@user.clear
@@ -18,8 +17,8 @@ class UserController < ApplicationController
 	end
 
 	get '/login' do
-		login_validate
-		redirect "/characters"
+		redirect to '/characters' if logged_in?
+		erb :'/users/login'
 	end
 
 	post '/login' do
