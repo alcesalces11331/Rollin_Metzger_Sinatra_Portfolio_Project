@@ -22,3 +22,8 @@
 	</label>
 	<input type="submit" value='Create'>
 </form>
+
+<form action="/klasses/<%= @klass.slug %>/delete" method='POST'>
+	<input type="hidden" name='_method' value='delete'>
+	<input type="submit" value="Delete Character?">
+</form>
