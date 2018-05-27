@@ -42,4 +42,16 @@ class KlassController < ApplicationController
 		flash[:message] = "Class Updated"
 		redirect "/klasses/#{@klass.slug}"
 	end
+
+	delete '/klasses/:slug/delete' do
+		@klass = Klass.find_by_slug(params[:slug])
+		if logged_in? && @klass.user_id == session[:id]
+			@klass.delete
+			flash[:message] = "Class Deleted"
+			redirect '/'
+		else
+			redirect '/login'
+		end
+	end
+
 end
