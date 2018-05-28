@@ -7,49 +7,36 @@ Edit/Update Character: <br>
 <form action="/characters/<%= @character.slug %>" method='POST'>
 	<input type="hidden" name='_method' value='PATCH'>
 
-	<label for="name">
-		Name: <input type="text" name='character[name]'>
-	</label>
-	<br>
-	<label for="race">
-		Race: <input type="text" name='charcter[race]'>
-	</label>
-	<br>
-	<label for="class">
-		Class: <input type="text" name="character[klass]">
-	</label>
-	<br>
+	Name: <%= @character.name %><br>
+	Race: <%= @character.race %><br>
+	Class: <%= @character.klass %><br>
 	Ability Scores:
-	<br>
-	<label for="str">
+	<br><label for="str">
 		Strength: <input type="integer" name='character[str]'>
-	</label>
-	<br>
+	</label><br>
 	<label for="con">
 		Constitution: <input type="integer" name='character[con]'>
-	</label>
-	<br>
+	</label><br>
 	<label for="dex">
 		Dexterity: <input type="integer" name='character[dex]'>
-	</label>
-	<br>
+	</label><br>
 	<label for="wis">
 		Wisdom: <input type="integer" name='character[wis]'>
-	</label>
-	<br>
+	</label><br>
 	<label for="int">
 		Intelligence: <input type="integer" name='character[int]'>
-	</label>
-	<br>
+	</label><br>
 	<label for="cha">
 		Charisma: <input type="integer" name='character[cha]'>
-	</label>
-	<br>
+	</label><br>
 
 	<input type="submit" value="Save Changes">
 </form>
 
 <form action="/characters/<%= @character.slug %>/delete" method='POST'>
 	<input type="hidden" name='_method' value='delete'>
-	<input type="submit" value="Delete Character?">
+	<input type="submit" value="Delete Character">
+</form>
+<form action="/logout">
+	<input type="submit" value="Log Out">
 </form>

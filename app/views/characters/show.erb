@@ -1,23 +1,18 @@
 <% if logged_in? %>
-	<%= @character.name %>
-	<br>
-	<%= @character.race %>
-	<br>
-	<%= @character.klass %>
-	<br>
-	Ability Scores:
-	<br>
-	<%= @character.str %>
-	<br>
-	<%= @character.con %>
-	<br>
-	<%= @character.dex %>
-	<br>
-	<%= @character.wis %>
-	<br>
-	<%= @character.int %>
-	<br>
-	<%= @character.cha %>
+	Name: <%= @character.name %><br>
+	Race: <%= @character.race %><br>
+	Class: <%= @character.klass %><br>
+	Ability Scores:<br>
+	Strength: <%= @character.str %><br>
+	Constitution: <%= @character.con %><br>
+	Dexterity: <%= @character.dex %><br>
+	Wisdom: <%= @character.wis %><br>
+	Intelligence: <%= @character.int %><br>
+	Charisma: <%= @character.cha %><br>
+	<a href="/characters/<%= @character.slug %>/edit">Edit <%= @character.name %></a><br>
+	<form action="/logout">
+		<input type="submit" value="Log Out">
+	</form>
 <% else %>
 	<a href="/login">Log In to See Your Character</a>
 <% end %>

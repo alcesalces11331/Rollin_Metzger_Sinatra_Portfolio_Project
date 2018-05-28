@@ -35,16 +35,17 @@ class CharacterController < ApplicationController
 		erb :'/characters/edit'
 	end
 
-	patch '/characters/:slug' do
+	post '/characters/:slug' do
 		login_validate
 		@character = Character.find_by_slug(params[:slug])
+		binding.pry
 		@character.update(params[:character])
 		@character.save
 		flash[:message] = "Character Updated"
 		redirect "/characters/#{@character.slug}"
 	end
 
-	delete '/characters/:slug/delete' do
+	post '/characters/:slug/delete' do
 		@character = Character.find_by_slug(params[:slug])
 		if logged_in? && @character.user_id == session[:user_id]
 			@character.delete
