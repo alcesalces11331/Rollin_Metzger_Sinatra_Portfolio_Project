@@ -1,7 +1,3 @@
-<% if flash.has?(:message) %>
-	<%= flash[:message] %>
-<% end %>
-
 Edit/Update Character: <br>
 <% @character.name %> <br> 
 <form action="/characters/<%= @character.slug %>" method='POST'>

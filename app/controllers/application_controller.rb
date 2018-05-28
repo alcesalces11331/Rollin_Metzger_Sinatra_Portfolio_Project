@@ -1,7 +1,7 @@
 require_relative '../models/concerns/slugifiable.rb'
 require './config/environment'
 require 'sinatra/base'
-require 'rack-flash'
+require 'sinatra/flash'
 
 class ApplicationController < Sinatra::Base
 	include Slugifiable::InstanceMethods
@@ -12,7 +12,7 @@ class ApplicationController < Sinatra::Base
 		set :views, 'app/views'
 		enable :sessions
 		set :session_secret, "rollaD20"
-		use Rack::Flash
+		register Sinatra::Flash
 	end
 
 	get '/' do
