@@ -14,10 +14,11 @@ class CharacterController < ApplicationController
 
 	post '/characters' do
 		login_validate
-		if params[:character] == ""
+		@character = current_user.characters.create(params[:character])
+		if !@character.valid?
+			flash[:message] = "Please Fill In All Forms"
 			redirect "/characters/new"
 		else
-			@character = current_user.characters.create(params[:character])
 			flash[:message] = "Character Created"
 			redirect "/characters/#{@character.slug}"
 		end
