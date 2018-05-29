@@ -39,7 +39,6 @@ class CharacterController < ApplicationController
 	post '/characters/:slug' do
 		login_validate
 		@character = Character.find_by_slug(params[:slug])
-		binding.pry
 		@character.update(params[:character])
 		@character.save
 		flash[:message] = "Character Updated"

@@ -14,10 +14,11 @@ class RaceController < ApplicationController
 
 	post '/races' do
 		login_validate
-		if params[:race] == ""
+		@race = current_user.races.create(params[:race])
+		if !@race.valid?
+			flash[:message] = "Please Fill Out All Forms"
 			redirect '/races/new'
 		else
-			@race = current_user.races.create(params[:race])
 			flash[:message] = "Race Created"
 			redirect "/races/#{@race.slug}"
 		end
@@ -35,7 +36,7 @@ class RaceController < ApplicationController
 		erb :'/races/edit'
 	end
 
-	patch '/races/:slug' do
+	post '/races/:slug' do
 		login_validate
 		@race = Races.find_by_slug(params[:slug])
 		@race.update(params[:race])
@@ -44,7 +45,7 @@ class RaceController < ApplicationController
 		redirect "/races/#{@race.slug}"
 	end
 
-	delete '/races/:slug/delete' do
+	post '/races/:slug/delete' do
 		@race = Race.find_by_slug(params[:slug])
 		if logged_in? && @race.user_id == session[:user_id]
 			@race.delete
