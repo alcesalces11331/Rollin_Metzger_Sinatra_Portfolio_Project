@@ -30,7 +30,7 @@ Edit/Update Character: <br>
 </form>
 
 <form action="/characters/<%= @character.slug %>/delete" method='POST'>
-	<input type="hidden" name='_method' value='delete'>
+	<input type="hidden" name='_method' value='DELETE'>
 	<input type="submit" value="Delete Character">
 </form>
 <form action="/logout">

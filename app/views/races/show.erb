@@ -14,6 +14,7 @@
 			<li><%= @race.bonus_2 %></li>
 		</ol>
 	</h2>
+	<a href="/races/<%= @race.slug %>/edit">Edit <%= @race.name %></a><br>
 <% else %>
 	<a href="/login">Log In</a>
 <% end %>

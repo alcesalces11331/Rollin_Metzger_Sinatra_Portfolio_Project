@@ -36,16 +36,16 @@ class RaceController < ApplicationController
 		erb :'/races/edit'
 	end
 
-	post '/races/:slug' do
+	patch '/races/:slug' do
 		login_validate
-		@race = Races.find_by_slug(params[:slug])
+		@race = Race.find_by_slug(params[:slug])
 		@race.update(params[:race])
 		@race.save
 		flash[:message] = "Race Updated"
 		redirect "/races/#{@race.slug}"
 	end
 
-	post '/races/:slug/delete' do
+	delete '/races/:slug/delete' do
 		@race = Race.find_by_slug(params[:slug])
 		if logged_in? && @race.user_id == session[:user_id]
 			@race.delete

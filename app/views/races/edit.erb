@@ -1,10 +1,9 @@
 Edit Race <br>
-<%= @race.name %>: <br>
 <form action="/races/<%= @race.slug %>" method='POST'>
 	<input type="hidden" name='_method' value='PATCH'>
 
 	<label for="new_race_name">
-		Name: <input type="text" name='race[name]'>
+		Name: <%= @race.name %>
 	</label>
 	<br>
 	<label for="new_race_language">
@@ -30,6 +29,6 @@ Edit Race <br>
 </form>
 
 <form action="/races/<%= @race.slug %>/delete" method='POST'>
-	<input type="hidden" name='_method' value='delete'>
-	<input type="submit" value="Delete Race?">
+	<input type="hidden" name='_method' value='DELETE'>
+	<input type="submit" value="Delete Race">
 </form>
