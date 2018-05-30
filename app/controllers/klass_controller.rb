@@ -35,7 +35,7 @@ class KlassController < ApplicationController
 		erb :'/klasses/edit'
 	end
 
-	post '/klasses/:slug' do
+	patch '/klasses/:slug' do
 		login_validate
 		@klass = Klass.find_by_slug(params[:slug])
 		@klass.update(params[:klass])
@@ -44,7 +44,7 @@ class KlassController < ApplicationController
 		redirect "/klasses/#{@klass.slug}"
 	end
 
-	post '/klasses/:slug/delete' do
+	delete '/klasses/:slug/delete' do
 		@klass = Klass.find_by_slug(params[:slug])
 		if logged_in? && @klass.user_id == session[:id]
 			@klass.delete

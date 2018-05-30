@@ -2,7 +2,7 @@
 	<input type="hidden" name='_method' value='PATCH'>
 
 	<label for="name">
-		Name: <input type="text" name='klass[name]'>
+		Name: <%= @klass.name %>
 	</label>
 	<br>
 	<label for="hitdie">
@@ -16,7 +16,8 @@
 	<label for="ability">
 		Ability: <input type="text" name='klass[ability]'>
 	</label>
-	<input type="submit" value='Create'>
+	<br>
+	<input type="submit" value='Update'>
 </form>
 
 <form action="/klasses/<%= @klass.slug %>/delete" method='POST'>

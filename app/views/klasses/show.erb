@@ -1,8 +1,13 @@
 <% if logged_in? %>
-	<h1><%= @klass.name %></h1>
-	<h2><%= @klass.hitdie %></h2>
-	<h2><%= @klass.proficencies %></h2>
-	<h2><%= @klass.ability %></h2>
+	<h1>Name: <%= @klass.name %></h1>
+	<h2>Hitdie: <%= @klass.hitdie %></h2>
+	<h2>Proficencies: <%= @klass.proficencies %></h2>
+	<h2>Ability: <%= @klass.ability %></h2>
+	<h4><a href="/klasses/<%= @klass.slug %>/edit">Edit <%= @klass.name %></a></h4>
+	<form action="/klasses/<%= @klass.slug %>/delete" method='POST'>
+		<input type="hidden" name='_method' value='delete'>
+		<input type="submit" value="Delete Character">
+	</form>
 <% else %>
 	<a href="/login">Log In</a>
 <% end %>
