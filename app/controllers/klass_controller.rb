@@ -8,6 +8,7 @@ class KlassController < ApplicationController
 
 	get '/klasses/new' do
 		login_validate
+		@klasses = Klass.all
 		erb :'/klasses/new'
 	end
 

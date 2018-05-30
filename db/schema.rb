@@ -38,8 +38,8 @@ ActiveRecord::Schema.define(version: 5) do
     t.string "language"
     t.string "bonus_1"
     t.string "bonus_2"
-    t.integer "abs_1"
-    t.integer "abs_2"
+    t.string "abs_1"
+    t.string "abs_2"
     t.integer "user_id"
   end
 
