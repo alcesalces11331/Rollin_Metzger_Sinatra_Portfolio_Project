@@ -8,7 +8,17 @@ races_list = [
 races_list.each {|spec| new_race = Race.create(spec)}
 
 klasses_list = [
-
+	{name: 'Barbarian', hitdie: 'd12', proficencies: 'all simple and martial weapons', ability: 'Rage'},
+	{name: 'Bard', hitdie: 'd8', proficencies: 'instruments of war and song', ability: 'Chant'},
+	{name: 'Cleric', hitdie: 'd8', proficencies: 'all simple weapons', ability: 'Divine Favor'},
+	{name: 'Druid', hitdie: 'd8', proficencies: 'quarterstaff, club, wood', ability: 'Shapeshift'},
+	{name: 'Fighter', hitdie: 'd10', proficencies: 'all simple and martial weapons', ability: 'Talented'},
+	{name: 'Monk', hitdie: 'd8', proficencies: 'monk weapons', ability: 'Ki'},
+	{name: 'Paladin', hitdie: 'd10', proficencies: 'all weapons', ability: 'Lay on Hands'},
+	{name: 'Ranger', hitdie: 'd8', proficencies: 'bows and swords', ability: 'Know the Land'},
+	{name: 'Rogue', hitdie: 'd6', proficencies: 'daggers', ability: 'Sneak Attack'},
+	{name: 'Sorcerer', hitdie: 'd6', proficencies: 'daggers and quarterstaff', ability: 'Innate Magic'},
+	{name: 'Wizard', hitdie: 'd6', proficencies: 'quarterstaff', ability: 'Tome of Knowledge'}
 ]
 
 klasses_list.each {|spec| new_klass = Klass.create(spec)}
