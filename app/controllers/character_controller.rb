@@ -9,6 +9,8 @@ class CharacterController < ApplicationController
 
 	get '/characters/new' do
 		login_validate
+		@klasses = Klass.all
+		@races = Race.all
 		erb :'/characters/new'
 	end
 

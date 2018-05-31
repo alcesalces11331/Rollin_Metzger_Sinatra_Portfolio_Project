@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 	validates :username, :email, :password, presence: true
 	validates :username, :email, uniqueness: true, :on => :create
 	validates :password, length: { in: 6..20,
-		message: 'must be between 6-20'}
+		message: 'must be between 6-20 characters'}
 	
 	has_many :characters
 	has_many :klasses

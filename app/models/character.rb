@@ -8,4 +8,8 @@ class Character < ActiveRecord::Base
 	validates_associated :race
 
 	belongs_to :user
+
+	#def unique_checkbox
+		#errors.add(:base, "Select Only One Class") if ...
+	#end
 end

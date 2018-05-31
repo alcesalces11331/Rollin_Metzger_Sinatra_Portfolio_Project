@@ -1,13 +1,6 @@
-<h1>Choose a Class</h1>
 <form action="/klasses" method='POST'>
-	<% @klasses.each do |klass| %>
-		<label for="<%= klass.name %>">
-			<%= klass.name %>
-			<input type="checkbox" name="klass">
-		</label>
-	<% end %>
 
-	<h1>Or, Create Your Own</h1>
+	<h1>Create Your Own Class</h1>
 
 	<label for="name">
 		Name: <input type="text" name='klass[name]'>

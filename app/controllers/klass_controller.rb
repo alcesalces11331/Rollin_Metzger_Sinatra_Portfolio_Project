@@ -8,12 +8,12 @@ class KlassController < ApplicationController
 
 	get '/klasses/new' do
 		login_validate
-		@klasses = Klass.all
 		erb :'/klasses/new'
 	end
 
 	post '/klasses' do
 		login_validate
+		binding.pry
 		@klass = current_user.klasses.create(params[:klass])
 		if !@klass.valid?
 			flash[:message] = "Please Fill Out All Forms"

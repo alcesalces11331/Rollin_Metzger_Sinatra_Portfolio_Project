@@ -5,11 +5,23 @@
 	</label>
 	<br>
 	<label for="race">
-		Race: <input type="text" name='character[race]'>
+		Race: <br>
+		<% @races.each do |race| %>
+			<label for="<%= race.name %>">
+				<%= race.name %>
+				<input type="checkbox" name="<%= race.name %>">
+			</label>
+		<% end %>
 	</label>
 	<br>
 	<label for="class">
-		Class: <input type="text" name="character[klass]">
+		Class: <br>
+		<% @klasses.each do |klass| %>
+			<label for="<%= klass.name %>">
+				<%= klass.name %>
+				<input type="checkbox" name="<%= klass.name %>">
+			</label>
+		<% end %>
 	</label>
 	<br>
 	Ability Scores:
