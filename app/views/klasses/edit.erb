@@ -1,3 +1,4 @@
+<h1>Edit Class</h1>
 <form action="/klasses/<%= @klass.slug %>" method='POST'>
 	<input type="hidden" name='_method' value='PATCH'>
 
@@ -17,6 +18,16 @@
 		Ability: <input type="text" name='klass[ability]'>
 	</label>
 	<br>
+	
+	<h1>Or, Select A New Class</h1>
+
+	<% @klasses.each do |klass| %>
+		<label for="<%= klass.name %>">
+			<%= klass.name %>
+			<input type="checkbox" name="klass">
+		</label>
+	<% end %>
+
 	<input type="submit" value='Update'>
 </form>
 

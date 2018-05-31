@@ -33,6 +33,7 @@ class KlassController < ApplicationController
 	get '/klasses/:slug/edit' do
 		login_validate
 		@klass = Klass.find_by_slug(params[:slug])
+		@klasses = Klass.all
 		erb :'/klasses/edit'
 	end
 
