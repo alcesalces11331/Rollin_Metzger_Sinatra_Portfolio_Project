@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
 	
 	has_secure_password
 	validates :username, :email, :password, presence: true
+	validates :password, length: { in: 6..20,
+		message: 'must be between 6-20'}
 	
 	has_many :characters
 	has_many :klasses
