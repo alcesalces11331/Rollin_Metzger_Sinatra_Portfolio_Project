@@ -13,13 +13,12 @@ class KlassController < ApplicationController
 
 	post '/klasses' do
 		login_validate
-		binding.pry
 		@klass = current_user.klasses.create(params[:klass])
 		if !@klass.valid?
-			flash[:message] = "Please Fill Out All Forms"
+			flash[:notice] = "Please Fill Out All Forms"
 			redirect '/klasses/new'
 		else
-			flash[:message] = "Class Created"
+			flash[:notice] = "Class Created"
 			redirect "/klasses/#{@klass.slug}"
 		end
 	end
@@ -42,7 +41,7 @@ class KlassController < ApplicationController
 		@klass = Klass.find_by_slug(params[:slug])
 		@klass.update(params[:klass])
 		@klass.save
-		flash[:message] = "Class Updated"
+		flash[:notice] = "Class Updated"
 		redirect "/klasses/#{@klass.slug}"
 	end
 
@@ -50,7 +49,7 @@ class KlassController < ApplicationController
 		@klass = Klass.find_by_slug(params[:slug])
 		if logged_in? && @klass.user_id == session[:id]
 			@klass.delete
-			flash[:message] = "Class Deleted"
+			flash[:notice] = "Class Deleted"
 			redirect '/'
 		else
 			redirect '/login'

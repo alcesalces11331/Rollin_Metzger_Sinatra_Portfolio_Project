@@ -10,9 +10,9 @@ class ApplicationController < Sinatra::Base
 	configure do
 		set :public_folder, 'public'
 		set :views, 'app/views'
-		enable :sessions
 		set :session_secret, "rollaD20"
 		register Sinatra::Flash
+		enable :sessions
 	end
 
 	get '/' do

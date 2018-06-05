@@ -23,10 +23,10 @@ class CharacterController < ApplicationController
 		@character.race = @race
 		@character.save
 		if !@character.valid?
-			flash[:message] = "Please Fill In All Forms"
+			flash[:notice] = "Please Fill In All Forms"
 			redirect "/characters/new"
 		else
-			flash[:message] = "Character Created"
+			flash[:notice] = "Character Created"
 			redirect "/characters/#{@character.slug}"
 		end
 	end
@@ -50,7 +50,7 @@ class CharacterController < ApplicationController
 		@character = Character.find_by_slug(params[:slug])
 		@character.update(params[:character])
 		@character.save
-		flash[:message] = "Character Updated"
+		flash[:notice] = "Character Updated"
 		redirect "/characters/#{@character.slug}"
 	end
 
@@ -58,7 +58,7 @@ class CharacterController < ApplicationController
 		@character = Character.find_by_slug(params[:slug])
 		if logged_in? && @character.user_id == session[:user_id]
 			@character.delete
-			flash[:message] = "Character Deleted"
+			flash[:notice] = "Character Deleted"
 			redirect '/'
 		else
 			redirect '/login'

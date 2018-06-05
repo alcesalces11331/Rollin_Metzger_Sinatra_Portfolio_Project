@@ -16,10 +16,10 @@ class RaceController < ApplicationController
 		login_validate
 		@race = current_user.races.create(params[:race])
 		if !@race.valid?
-			flash[:message] = "Please Fill Out All Forms"
+			flash[:notice] = "Please Fill Out All Forms"
 			redirect '/races/new'
 		else
-			flash[:message] = "Race Created"
+			flash[:notice] = "Race Created"
 			redirect "/races/#{@race.slug}"
 		end
 	end
@@ -41,7 +41,7 @@ class RaceController < ApplicationController
 		@race = Race.find_by_slug(params[:slug])
 		@race.update(params[:race])
 		@race.save
-		flash[:message] = "Race Updated"
+		flash[:notice] = "Race Updated"
 		redirect "/races/#{@race.slug}"
 	end
 
@@ -49,7 +49,7 @@ class RaceController < ApplicationController
 		@race = Race.find_by_slug(params[:slug])
 		if logged_in? && @race.user_id == session[:user_id]
 			@race.delete
-			flash[:message] = "Race Deleted"
+			flash[:notice] = "Race Deleted"
 			redirect '/'
 		else
 			redirect '/login'

@@ -24,6 +24,7 @@ class UserController < ApplicationController
 		@user = User.find_by(username: params[:username])
 		if @user && @user.authenticate(params[:password])
 			session[:user_id] = @user.id
+			flash[:notice] = "Logged in as #{@user.username}"
 			redirect '/characters'
 		else
 			redirect '/signup'
@@ -33,6 +34,7 @@ class UserController < ApplicationController
 	get '/logout' do
 		login_validate
 		session.clear
+		flash[:notice] = "Successfully Logged Out"
 		redirect '/login'
 	end
 end
