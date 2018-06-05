@@ -1,3 +1,4 @@
+require 'sinatra/flash'
 class CharacterController < ApplicationController
 
 	get '/characters' do
