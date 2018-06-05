@@ -16,7 +16,13 @@ class CharacterController < ApplicationController
 
 	post '/characters' do
 		login_validate
+		@klass = Klass.find_by(name: params[:character]["klass"].keys.first)
+		@race = Race.find_by(name: params[:character]["race"].keys.first)
 		@character = current_user.characters.create(params[:character])
+		@character.klass = @klass
+		@character.race = @race
+		@character.save
+		binding.pry
 		if !@character.valid?
 			flash[:message] = "Please Fill In All Forms"
 			redirect "/characters/new"
@@ -29,6 +35,7 @@ class CharacterController < ApplicationController
 	get '/characters/:slug' do
 		login_validate
 		@character = Character.find_by_slug(params[:slug])
+		binding.pry
 		erb :'/characters/show'
 	end
 

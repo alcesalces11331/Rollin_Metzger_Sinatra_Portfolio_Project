@@ -1,7 +1,7 @@
 <% if logged_in? %>
 	Name: <%= @character.name %><br>
-	Race: <%= @character.race %><br>
-	Class: <%= @character.klass %><br>
+	Race: <%= Race.find_by_id(@character.race).name %><br>
+	Class: <%= Klass.find_by_id(@character.klass).name %><br>
 	Ability Scores:<br>
 	Strength: <%= @character.str %><br>
 	Constitution: <%= @character.con %><br>

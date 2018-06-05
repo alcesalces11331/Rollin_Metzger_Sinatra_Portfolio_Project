@@ -2,13 +2,12 @@ class Character < ActiveRecord::Base
 	include Slugifiable::InstanceMethods
 	extend Slugifiable::ClassMethods
 	
-	validates :name, :race, :klass, presence: true
-
-	validates_associated :klass
-	validates_associated :race
-
 	belongs_to :user
+	has_many :klasses
+	has_many :races
 
+	validates :name, :race, :klass, presence: true
+	
 	#def unique_checkbox
 		#errors.add(:base, "Select Only One Class") if ...
 	#end

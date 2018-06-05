@@ -9,7 +9,7 @@
 		<% @races.each do |race| %>
 			<label for="<%= race.name %>">
 				<%= race.name %>
-				<input type="checkbox" name="<%= race.name %>">
+				<input type="checkbox" name="character[race][<%= race.name %>]">
 			</label>
 		<% end %>
 	</label>
@@ -19,7 +19,7 @@
 		<% @klasses.each do |klass| %>
 			<label for="<%= klass.name %>">
 				<%= klass.name %>
-				<input type="checkbox" name="<%= klass.name %>">
+				<input type="checkbox" name="character[klass][<%= klass.name %>]">
 			</label>
 		<% end %>
 	</label>
