@@ -4,8 +4,8 @@
 
 <% @characters.each do |character| %>
 	<a href="/characters/<%= character.slug %>"><%= character.name %></a><br>
-	<%= character.race %><br>
-	<%= character.klass %><br>
+	Race: <%= Race.find_by_id(character.race.to_i).name %><br>
+	Class: <%= Klass.find_by_id(character.klass.to_i).name %><br>
 <% end %>
 
 <form action="/logout">
