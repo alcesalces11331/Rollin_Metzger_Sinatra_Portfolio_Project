@@ -1,3 +1,5 @@
+require 'sinatra/flash'
+
 class RaceController < ApplicationController
 
 	get '/races' do

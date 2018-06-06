@@ -1,3 +1,5 @@
+require 'sinatra/flash'
+
 class KlassController < ApplicationController
 
 	get '/klasses' do

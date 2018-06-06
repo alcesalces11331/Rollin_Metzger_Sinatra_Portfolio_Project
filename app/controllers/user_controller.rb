@@ -1,4 +1,5 @@
-require 'pry'
+require 'sinatra/flash'
+
 class UserController < ApplicationController
 
 	get '/signup' do
