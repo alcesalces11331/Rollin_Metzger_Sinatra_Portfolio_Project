@@ -8,7 +8,5 @@ class Character < ActiveRecord::Base
 
 	validates :name, :race, :klass, presence: true
 	
-	#def unique_checkbox
-		#errors.add(:base, "Select Only One Class") if ...
-	#end
+	#need to validate uniqueness of name to remove two characters overlay
 end

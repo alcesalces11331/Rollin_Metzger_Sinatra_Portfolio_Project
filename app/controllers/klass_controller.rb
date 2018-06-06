@@ -2,7 +2,8 @@ class KlassController < ApplicationController
 
 	get '/klasses' do
 		login_validate
-		@klasses = Klass.all
+		@user = current_user
+		@klasses = Klass.select {|klass| klass.user_id == @user.id || klass.user_id == nil}
 		erb :'/klasses/klasses'
 	end
 

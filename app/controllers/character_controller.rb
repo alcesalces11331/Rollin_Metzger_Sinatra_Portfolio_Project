@@ -4,7 +4,7 @@ class CharacterController < ApplicationController
 	get '/characters' do
 		login_validate
 		@user = current_user
-		@characters = Character.all
+		@characters = Character.select {|character| character.user_id == @user.id}
 		erb :'/characters/characters'
 	end
 
@@ -37,7 +37,13 @@ class CharacterController < ApplicationController
 		@character = Character.find_by_slug(params[:slug])
 		@race = Race.find_by_id(@character.race.to_i)
 		@klass = Klass.find_by_id(@character.klass.to_i)
-		erb :'/characters/show'
+		@user = current_user
+		if @character.user_id == @user.id
+			erb :'/characters/show'
+		else
+			flash[:notice] = "You Do Not Have Permission to View This Character"
+			redirect "/characters"
+		end
 	end
 
 	get '/characters/:slug/edit' do

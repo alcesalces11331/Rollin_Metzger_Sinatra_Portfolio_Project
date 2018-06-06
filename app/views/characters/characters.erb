@@ -7,7 +7,3 @@
 	Race: <%= Race.find_by_id(character.race.to_i).name %><br>
 	Class: <%= Klass.find_by_id(character.klass.to_i).name %><br>
 <% end %>
-
-<form action="/logout">
-	<input type="submit" value="Log Out">
-</form>

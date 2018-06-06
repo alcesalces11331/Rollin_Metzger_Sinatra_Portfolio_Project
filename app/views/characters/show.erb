@@ -10,9 +10,6 @@
 	Intelligence: <%= @character.int %><br>
 	Charisma: <%= @character.cha %><br>
 	<a href="/characters/<%= @character.slug %>/edit">Edit <%= @character.name %></a><br>
-	<form action="/logout">
-		<input type="submit" value="Log Out">
-	</form>
 <% else %>
 	<a href="/login">Log In to See Your Character</a>
 <% end %>

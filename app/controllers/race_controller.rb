@@ -2,7 +2,8 @@ class RaceController < ApplicationController
 
 	get '/races' do
 		login_validate
-		@races = Race.all
+		@user = current_user
+		@races = Race.select {|race| race.user_id == @user.id || race.user_id == nil}
 		erb :'/races/index'
 	end
 
