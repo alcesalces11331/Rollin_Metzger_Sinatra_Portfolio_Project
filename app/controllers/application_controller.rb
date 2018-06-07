@@ -34,12 +34,6 @@ class ApplicationController < Sinatra::Base
 		def login_validate
 			redirect '/' if !logged_in?
 		end
-
-		#finding all character objects with the same name and isolating the ones with the
-		#correct, i.e., current user.id
-		def sift_characters
-			@characters = Character.all.select {|char| char.user_id == current_user.id}
-		end
 		
 	end
 end

@@ -5,7 +5,7 @@ class KlassController < ApplicationController
 	get '/klasses' do
 		login_validate
 		@user = current_user
-		@klasses = Klass.select {|klass| klass.user_id == @user.id || klass.user_id == nil}
+		@klasses = sift_klasses
 		erb :'/klasses/klasses'
 	end
 
@@ -57,6 +57,10 @@ class KlassController < ApplicationController
 		else
 			redirect '/login'
 		end
+	end
+
+	def sift_klasses
+		Klass.all.select {|klas| klas.user_id == current_user.id}
 	end
 
 end

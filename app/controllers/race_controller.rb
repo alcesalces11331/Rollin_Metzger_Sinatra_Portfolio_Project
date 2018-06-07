@@ -5,7 +5,7 @@ class RaceController < ApplicationController
 	get '/races' do
 		login_validate
 		@user = current_user
-		@races = Race.select {|race| race.user_id == @user.id || race.user_id == nil}
+		@races = sift_races
 		erb :'/races/index'
 	end
 
@@ -57,5 +57,9 @@ class RaceController < ApplicationController
 		else
 			redirect '/login'
 		end
+	end
+
+	def sift_Races
+		Race.all.select {|race| race.user_id == current_user.id}
 	end
 end

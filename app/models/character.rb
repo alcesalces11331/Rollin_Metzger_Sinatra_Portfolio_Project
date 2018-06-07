@@ -7,7 +7,5 @@ class Character < ActiveRecord::Base
 	has_many :races
 
 	validates :name, :race, :klass, presence: true
-	#validates :name, uniqueness: true,
-		#if: Proc.new { |a| a.name.}
 
 end

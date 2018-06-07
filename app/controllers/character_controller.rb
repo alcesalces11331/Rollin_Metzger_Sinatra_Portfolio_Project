@@ -5,7 +5,7 @@ class CharacterController < ApplicationController
 	get '/characters' do
 		login_validate
 		@user = current_user
-		@characters = Character.all.select {|character| character.user_id == @user.id}
+		@characters = sift_characters
 		erb :'/characters/characters'
 	end
 
@@ -35,11 +35,11 @@ class CharacterController < ApplicationController
 
 	get '/characters/:slug' do
 		login_validate
+		@user = current_user
 		@characters = sift_characters
 		@character = @characters.select{|char| char.name.downcase == params[:slug].gsub('-', ' ')}.first
 		@race = Race.find_by_id(@character.race.to_i)
 		@klass = Klass.find_by_id(@character.klass.to_i)
-		@user = current_user
 		if @character.user_id == @user.id
 			erb :'/characters/show'
 		else
@@ -72,6 +72,10 @@ class CharacterController < ApplicationController
 		else
 			redirect '/login'
 		end
+	end
+
+	def sift_characters
+		Character.all.select {|char| char.user_id == current_user.id}
 	end
 			
 end
