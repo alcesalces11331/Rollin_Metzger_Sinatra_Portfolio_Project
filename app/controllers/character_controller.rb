@@ -5,7 +5,7 @@ class CharacterController < ApplicationController
 	get '/characters' do
 		login_validate
 		@user = current_user
-		@characters = Character.select {|character| character.user_id == @user.id}
+		@characters = Character.all.select {|character| character.user_id == @user.id}
 		erb :'/characters/characters'
 	end
 
@@ -35,7 +35,8 @@ class CharacterController < ApplicationController
 
 	get '/characters/:slug' do
 		login_validate
-		@character = Character.find_by_slug(params[:slug])
+		@characters = sift_characters
+		@character = @characters.select{|char| char.name.downcase == params[:slug].gsub('-', ' ')}.first
 		@race = Race.find_by_id(@character.race.to_i)
 		@klass = Klass.find_by_id(@character.klass.to_i)
 		@user = current_user

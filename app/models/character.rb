@@ -7,6 +7,7 @@ class Character < ActiveRecord::Base
 	has_many :races
 
 	validates :name, :race, :klass, presence: true
-	
-	#need to validate uniqueness of name to remove two characters overlay
+	#validates :name, uniqueness: true,
+		#if: Proc.new { |a| a.name.}
+
 end
