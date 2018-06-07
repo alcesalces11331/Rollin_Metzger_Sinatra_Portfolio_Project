@@ -1,7 +1,7 @@
 <h3>Your Classes:</h3>
 
 <% @klasses.each do |klasse| %>
-	<%= klasse.name %><br>
+	<a href='/klasses/<%= klasse.slug %>'><%= klasse.name %></a><br>
 	<%= klasse.hitdie %><br>
 	<%= klasse.proficencies %><br>
 	<%= klasse.ability %><br>

@@ -4,8 +4,8 @@ Edit/Update Character: <br>
 	<input type="hidden" name='_method' value='PATCH'>
 
 	Name: <%= @character.name %><br>
-	Race: <%= @character.race %><br>
-	Class: <%= @character.klass %><br>
+	Race: <a href='races/<%= @race.name %>'><%= @race.name %></a><br>
+	Class: <a href='klasses/<%= @klass.name %>'><%= @klass.name %></a><br>
 	Ability Scores:
 	<br><label for="str">
 		Strength: <input type="integer" name='character[str]'>

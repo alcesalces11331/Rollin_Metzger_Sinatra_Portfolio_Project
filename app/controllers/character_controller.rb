@@ -11,8 +11,8 @@ class CharacterController < ApplicationController
 
 	get '/characters/new' do
 		login_validate
-		@klasses = Klass.all
-		@races = Race.all
+		@klasses = Klass.all.select {|klas| klas.user_id == current_user.id || klas.user_id == nil}
+		@races = Race.all.select {|race| race.user_id == current_user.id || race.user_id == nil}
 		erb :'/characters/new'
 	end
 
@@ -35,12 +35,11 @@ class CharacterController < ApplicationController
 
 	get '/characters/:slug' do
 		login_validate
-		@user = current_user
 		@characters = sift_characters
 		@character = @characters.select{|char| char.name.downcase == params[:slug].gsub('-', ' ')}.first
 		@race = Race.find_by_id(@character.race.to_i)
 		@klass = Klass.find_by_id(@character.klass.to_i)
-		if @character.user_id == @user.id
+		if @character.user_id == current_user.id
 			erb :'/characters/show'
 		else
 			flash[:notice] = "You Do Not Have Permission to View This Character"
@@ -50,7 +49,10 @@ class CharacterController < ApplicationController
 
 	get '/characters/:slug/edit' do
 		login_validate
-		@character = Character.find_by_slug(params[:slug])
+		@characters = sift_characters
+		@character = @characters.select{|char| char.name.downcase == params[:slug].gsub('-', ' ')}.first
+		@race = Race.find_by_id(@character.race.to_i)
+		@klass = Klass.find_by_id(@character.klass.to_i)
 		erb :'/characters/edit'
 	end
 
@@ -64,7 +66,9 @@ class CharacterController < ApplicationController
 	end
 
 	delete '/characters/:slug/delete' do
-		@character = Character.find_by_slug(params[:slug])
+		login_validate
+		@characters = sift_characters
+		@character = @characters.select{|char| char.name.downcase == params[:slug].gsub('-', ' ')}.first
 		if logged_in? && @character.user_id == session[:user_id]
 			@character.delete
 			flash[:notice] = "Character Deleted"
@@ -75,7 +79,7 @@ class CharacterController < ApplicationController
 	end
 
 	def sift_characters
-		Character.all.select {|char| char.user_id == current_user.id}
+		Character.all.select {|char| char.user_id == current_user.id || char.user_id == nil}
 	end
 			
 end

@@ -28,20 +28,27 @@ class KlassController < ApplicationController
 
 	get '/klasses/:slug' do
 		login_validate
-		@klass = Klass.find_by_slug(params[:slug])
-		erb :'/klasses/show'
+		@klasses = sift_klasses
+		@klass = @klasses.select{|klass| klass.name.downcase == params[:slug].gsub('-', ' ')}.first
+		if @klass.user_id == current_user.id
+			erb :'/klasses/show'
+		else
+			flash[:notice] == "You Do Not Have Permission To View This Race"
+			redirect '/klasses'
+		end
 	end
 
 	get '/klasses/:slug/edit' do
 		login_validate
-		@klass = Klass.find_by_slug(params[:slug])
-		@klasses = Klass.all
+		@klasses = sift_klasses
+		@klass = @klasses.select{|klass| klass.name.downcase == params[:slug].gsub('-', ' ')}.first
 		erb :'/klasses/edit'
 	end
 
 	patch '/klasses/:slug' do
 		login_validate
-		@klass = Klass.find_by_slug(params[:slug])
+		@klasses = sift_klasses
+		@klass = @klasses.select{|klass| klass.name.downcase == params[:slug].gsub('-', ' ')}.first
 		@klass.update(params[:klass])
 		@klass.save
 		flash[:notice] = "Class Updated"
@@ -49,7 +56,9 @@ class KlassController < ApplicationController
 	end
 
 	delete '/klasses/:slug/delete' do
-		@klass = Klass.find_by_slug(params[:slug])
+		login_validate
+		@klasses = sift_klasses
+		@klass = @klasses.select{|klass| klass.name.downcase == params[:slug].gsub('-', ' ')}.first
 		if logged_in? && @klass.user_id == session[:id]
 			@klass.delete
 			flash[:notice] = "Class Deleted"
@@ -60,7 +69,7 @@ class KlassController < ApplicationController
 	end
 
 	def sift_klasses
-		Klass.all.select {|klas| klas.user_id == current_user.id}
+		Klass.all.select {|klas| klas.user_id == current_user.id || klas.user_id == nil}
 	end
 
 end
