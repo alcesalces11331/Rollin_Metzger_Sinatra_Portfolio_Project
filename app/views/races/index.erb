@@ -1,6 +1,4 @@
 <h1>List of All Races</h1>
 <% @races.each do |race| %>
-	<li>
-		<a href="/races/<%=race.slug%>"><%= race.name %></a>
-	</li>
+	<a href="/races/<%=race.slug%>"><%= race.name %></a><br>
 <% end %>

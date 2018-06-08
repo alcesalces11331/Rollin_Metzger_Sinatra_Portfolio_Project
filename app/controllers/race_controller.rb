@@ -30,7 +30,7 @@ class RaceController < ApplicationController
 		login_validate
 		@races = sift_races
 		@race = @races.select{|race| race.name.downcase == params[:slug].gsub('-', ' ')}.first
-		if @race.user_id == current_user.id
+		if @race.user_id == current_user.id || @race.user_id == nil
 			erb :'/races/show'
 		else
 			flash[:notice] == "You Do Not Have Permission To View This Race"

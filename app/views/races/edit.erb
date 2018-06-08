@@ -25,10 +25,12 @@ Edit Race <br>
 	<label for="new_race_abs_2">
 		Ability Score Modifier 2: <input type="text" name='race[abs_2]'>
 	</label>
+	<br>
 	<input type="submit" value='Update'>
 </form>
-
 <form action="/races/<%= @race.slug %>/delete" method='POST'>
 	<input type="hidden" name='_method' value='DELETE'>
 	<input type="submit" value="Delete Race">
 </form>
+<br>
+<a href="/races">Back to Races</a>
