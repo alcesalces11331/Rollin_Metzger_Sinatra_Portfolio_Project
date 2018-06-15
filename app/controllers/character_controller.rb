@@ -18,6 +18,9 @@ class CharacterController < ApplicationController
 
 	post '/characters' do
 		login_validate
+
+		#by choosing to store these as referential id numbers within their class tables, it makes the code more dynamic
+
 		@klass = Klass.find_by(name: params[:character]["klass"].keys.first).id
 		@race = Race.find_by(name: params[:character]["race"].keys.first).id
 		@character = current_user.characters.create(params[:character])
@@ -58,7 +61,8 @@ class CharacterController < ApplicationController
 
 	patch '/characters/:slug' do
 		login_validate
-		@character = Character.find_by_slug(params[:slug])
+		@characters = sift_characters
+		@character = @characters.select{|char| char.name.downcase == params[:slug].gsub('-', ' ')}.first
 		@character.update(params[:character])
 		@character.save
 		flash[:notice] = "Character Updated"
@@ -77,6 +81,8 @@ class CharacterController < ApplicationController
 			redirect '/login'
 		end
 	end
+
+	#this helper method guarantees only the logged-in user's objects will be returned
 
 	def sift_characters
 		Character.all.select {|char| char.user_id == current_user.id || char.user_id == nil}
